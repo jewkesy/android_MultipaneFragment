@@ -1,9 +1,11 @@
 package com.daryljewkes.multipanefragment;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MyActivity extends Activity {
@@ -12,6 +14,18 @@ public class MyActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
+        int screenOrientation = getResources().getConfiguration().orientation;
+        if (screenOrientation == Configuration.ORIENTATION_PORTRAIT) {
+            hideSidePanel();
+        }
+    }
+
+    private void hideSidePanel() {
+        View sidePanel = findViewById(R.id.side_panel);
+        if (sidePanel.getVisibility() == View.VISIBLE) {
+            sidePanel.setVisibility(View.GONE);
+        }
     }
 
 
